@@ -1,0 +1,62 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("PK HUB", "Synapse")
+local Tab = Window:NewTab("Menu")
+local Section = Tab:NewSection("TP Win")
+Section:NewButton("TP", "Click To TP", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-107.773659, 253.999863, 49.1419678, -0.020912474, -2.11929478e-08, -0.999781311, -4.87907563e-08, 1, -2.01770245e-08, 0.999781311, 4.83581353e-08, -0.020912474)
+end)
+local Tab = Window:NewTab("Shop")
+local Section = Tab:NewSection("Shop")
+Section:NewButton("Quick Spawn", "ButtonInfo", function()
+local A_1 = "QuickSpawn"
+local Event = game:GetService("ReplicatedStorage").BuyQuickSpawn
+Event:InvokeServer(A_1)
+end)
+Section:NewButton("High Speed", "ButtonInfo", function()
+local A_1 = "HighSpeed"
+local Event = game:GetService("ReplicatedStorage").BuyHighSpeed
+Event:InvokeServer(A_1)
+end)
+Section:NewButton("Low Gravity", "Cilck", function()
+local A_1 = "LowGravity"
+local Event = game:GetService("ReplicatedStorage").BuyLowGravity
+Event:InvokeServer(A_1)
+end)
+Section:NewButton("Night Mode", "Cilck", function()
+local A_1 = "NightMode"
+local Event = game:GetService("ReplicatedStorage").BuyNightMode
+Event:InvokeServer(A_1)
+end)
+Section:NewButton("Glass Tower", "Cilck", function()
+local A_1 = "GlassTower"
+local Event = game:GetService("ReplicatedStorage").BuyGlassTower
+Event:InvokeServer(A_1)
+end)
+Section:NewButton("Speed Timer", "Cilck", function()
+local A_1 = "SpeedTimer"
+local Event = game:GetService("ReplicatedStorage").BuySpeedTimer
+Event:InvokeServer(A_1)
+end)
+Section:NewButton("Immunit", "ButtonInfo", function()
+local A_1 = "Immunity"
+local Event = game:GetService("ReplicatedStorage").BuyImmunity
+Event:InvokeServer(A_1)
+end)
+local Tab = Window:NewTab("Player")
+local Section = Tab:NewSection("Select Player")
+Plr = {}
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(Plr,v.Name) 
+end
+local drop = Section:NewDropdown("Select Player", "Click", Plr, function(t)
+   PlayerTP = t
+end)
+Section:NewButton("Click", "Click To TP", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+end)
+Section:NewButton("Refresh Player","Refresh", function()
+  drop:Refresh(Plr)
+end)
+Section:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
